@@ -2,6 +2,7 @@ package com.df.jsonboot;
 
 import com.df.jsonboot.common.Banner;
 import com.df.jsonboot.common.JsonBootBanner;
+import com.df.jsonboot.server.HttpServer;
 
 import java.io.PrintStream;
 
@@ -15,5 +16,7 @@ public class JsonBootApplication {
     public static void main(String[] args) {
         Banner banner = new JsonBootBanner();
         banner.printBanner(null, System.out);
+        HttpServer httpServer = new HttpServer();
+        httpServer.run();
     }
 }
