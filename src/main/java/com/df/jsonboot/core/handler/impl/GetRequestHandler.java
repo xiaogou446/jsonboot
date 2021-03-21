@@ -1,13 +1,12 @@
-package com.df.jsonboot.handler.impl;
+package com.df.jsonboot.core.handler.impl;
 
-import com.df.jsonboot.handler.RequestHandler;
+import com.df.jsonboot.core.handler.RequestHandler;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.QueryStringDecoder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.CharEncoding;
 import org.apache.commons.codec.Charsets;
 
-import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 
@@ -29,7 +28,6 @@ public class GetRequestHandler implements RequestHandler {
         for (Map.Entry<String, List<String>> parameter : parameters.entrySet()){
             log.info(parameter.getKey() + " = " + parameter.getValue());
         }
-
         return null;
     }
 

@@ -1,14 +1,12 @@
-package com.df.jsonboot.handler.impl;
+package com.df.jsonboot.core.handler.impl;
 
-import com.df.jsonboot.handler.RequestHandler;
+import com.df.jsonboot.core.handler.RequestHandler;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.netty.handler.codec.http.FullHttpRequest;
 import org.apache.commons.codec.CharEncoding;
 import org.apache.commons.codec.Charsets;
 import org.apache.commons.lang3.StringUtils;
-
-import java.util.Date;
 
 /**
  * 处理http post的请求

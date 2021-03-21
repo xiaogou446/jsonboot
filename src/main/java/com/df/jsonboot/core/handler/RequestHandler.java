@@ -1,4 +1,4 @@
-package com.df.jsonboot.handler;
+package com.df.jsonboot.core.handler;
 
 import io.netty.handler.codec.http.FullHttpRequest;
 

@@ -2,6 +2,7 @@ package com.df.jsonboot;
 
 import com.df.jsonboot.common.Banner;
 import com.df.jsonboot.common.JsonBootBanner;
+import com.df.jsonboot.core.route.Route;
 import com.df.jsonboot.server.HttpServer;
 
 import java.io.PrintStream;
@@ -16,6 +17,9 @@ public class JsonBootApplication {
     public static void main(String[] args) {
         Banner banner = new JsonBootBanner();
         banner.printBanner(null, System.out);
+        //初始化注解
+        Route route = new Route();
+        route.loadRoutes("com.df.demo");
         HttpServer httpServer = new HttpServer();
         httpServer.run();
     }

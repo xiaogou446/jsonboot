@@ -1,7 +1,7 @@
-package com.df.jsonboot.demo;
+package com.df.jsonboot.core.scanners;
 
 import com.df.jsonboot.annotation.RestController;
 
 @RestController
-public class UserController {
+public class ctest {
 }
