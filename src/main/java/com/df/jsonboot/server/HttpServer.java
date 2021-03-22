@@ -1,6 +1,6 @@
 package com.df.jsonboot.server;
 
-import com.df.jsonboot.common.SystemConstants;
+import com.df.jsonboot.constant.SystemConstants;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;

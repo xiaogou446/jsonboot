@@ -5,6 +5,9 @@ import com.df.jsonboot.annotation.PostMapping;
 import com.df.jsonboot.annotation.RequestParam;
 import com.df.jsonboot.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController(value = "/user")
 public class UserController {
 
@@ -20,9 +23,14 @@ public class UserController {
     }
 
     @GetMapping("/goodThis")
-    public void goodThis(@RequestParam(value = "name") String name, Integer age){
+    public String goodThis(@RequestParam(value = "name") String name, int age){
         System.out.println(name);
         System.out.println(age);
+        List<String> list = new ArrayList<>();
+        list.add("3");
+        list.add("4");
+        list.add("5");
+        return "323414";
     }
 
 

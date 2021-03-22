@@ -1,4 +1,4 @@
-package com.df.jsonboot.common;
+package com.df.jsonboot.constant;
 
 /**
  * 系统常量
