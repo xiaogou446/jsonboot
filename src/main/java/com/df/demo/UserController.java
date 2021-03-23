@@ -1,9 +1,7 @@
 package com.df.demo;
 
-import com.df.jsonboot.annotation.GetMapping;
-import com.df.jsonboot.annotation.PostMapping;
-import com.df.jsonboot.annotation.RequestParam;
-import com.df.jsonboot.annotation.RestController;
+import com.df.demo.entity.User;
+import com.df.jsonboot.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +29,13 @@ public class UserController {
         list.add("4");
         list.add("5");
         return "323414";
+    }
+
+    @PostMapping(value = "/testHttpPost")
+    public String testHttpPost(@RequestBody User user, String alex){
+        System.out.println(user);
+        System.out.println(alex);
+        return "success";
     }
 
 
