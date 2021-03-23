@@ -3,17 +3,14 @@ package com.df.jsonboot.core.handler.impl;
 import com.df.jsonboot.annotation.RequestParam;
 import com.df.jsonboot.core.handler.RequestHandler;
 import com.df.jsonboot.core.route.Route;
-import com.df.jsonboot.utils.ObjectUtils;
+import com.df.jsonboot.utils.ObjectUtil;
 import com.df.jsonboot.utils.ReflectionUtil;
-import com.df.jsonboot.utils.UrlUtils;
-import com.sun.tools.javac.util.Convert;
+import com.df.jsonboot.utils.UrlUtil;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.QueryStringDecoder;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.CharEncoding;
 import org.apache.commons.codec.Charsets;
-import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.*;
 import java.util.ArrayList;
@@ -31,10 +28,9 @@ public class GetRequestHandler implements RequestHandler {
 
     @Override
     public Object handler(FullHttpRequest fullHttpRequest) {
-
-        QueryStringDecoder queryDecoder = new QueryStringDecoder(fullHttpRequest.uri(), Charsets.toCharset(CharEncoding.UTF_8));
-        Map<String, String> queryParamMap = UrlUtils.getQueryParam(queryDecoder);
-        String path = queryDecoder.path();
+        String uri = fullHttpRequest.uri();
+        Map<String, String> queryParamMap = UrlUtil.getQueryParam(uri);
+        String path = UrlUtil.convertUriToPath(uri);
         Method method = Route.getMethodMapping.get(path);
         if (method == null){
             return null;
@@ -59,7 +55,7 @@ public class GetRequestHandler implements RequestHandler {
                 //如果没有注解，则直接进行名称对应查找
                 paramValue = queryParamMap.get(parameter.getName());
             }
-            params.add(ObjectUtils.convertToClass(type, paramValue));
+            params.add(ObjectUtil.convertToClass(type, paramValue));
         }
         return ReflectionUtil.executeMethod(method, params.toArray());
     }

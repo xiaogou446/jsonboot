@@ -9,7 +9,7 @@ import java.beans.PropertyEditorManager;
  * @author qinghuo
  * @since 2021/03/22 14:40
  */
-public class ObjectUtils {
+public class ObjectUtil {
 
     /**
      * 转换String类型对象为目标类型对象

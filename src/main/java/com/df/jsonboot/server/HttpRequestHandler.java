@@ -66,7 +66,7 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
             response = HttpResponse.ok(result);
         }catch (Exception e){
             e.printStackTrace();
-            response = HttpResponse.internalServerError();
+            response = HttpResponse.internalServerError(uri);
         }
         //对获得的数据进行相应处理
         boolean keepAlive = HttpUtil.isKeepAlive(request);

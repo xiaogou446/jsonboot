@@ -44,7 +44,7 @@ public class ReflectionUtil {
     public static Object getNumber(Class<?> type,String str) {
         Class<?>[] paramsClasses = { str.getClass() };
         Object[] params = { str };
-        Class<?> typeClass = ObjectUtils.convertBaseClass(type);
+        Class<?> typeClass = ObjectUtil.convertBaseClass(type);
         Object o = null;
         try {
             Constructor<?> c = typeClass.getConstructor(paramsClasses);

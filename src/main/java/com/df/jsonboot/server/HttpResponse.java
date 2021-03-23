@@ -1,5 +1,6 @@
 package com.df.jsonboot.server;
 
+import com.df.jsonboot.entity.ErrorResponse;
 import com.df.jsonboot.serialize.impl.JacksonSerializer;
 import io.netty.buffer.Unpooled;
 import io.netty.handler.codec.http.DefaultFullHttpResponse;
@@ -39,11 +40,12 @@ public class HttpResponse {
 
     /**
      * 当请求处理失败时，生成失败响应
-     *
+     * @param uri 请求路径
      * @return 响应
      */
-    public static FullHttpResponse internalServerError(){
-        byte[] bytes = JACKSON_SERIALIZER.serialize(INTERNAL_SERVER_ERROR.reasonPhrase());
+    public static FullHttpResponse internalServerError(String uri){
+        ErrorResponse errorResponse = new ErrorResponse(INTERNAL_SERVER_ERROR.code(), INTERNAL_SERVER_ERROR.reasonPhrase(), uri);
+        byte[] bytes = JACKSON_SERIALIZER.serialize(errorResponse);
         DefaultFullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, INTERNAL_SERVER_ERROR, Unpooled.wrappedBuffer(bytes));
         response.headers().set(CONTENT_TYPE, "application/text");
         response.headers().setInt(CONTENT_LENGTH, response.content().readableBytes());
