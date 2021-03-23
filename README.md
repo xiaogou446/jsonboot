@@ -7,3 +7,4 @@
 3.完成@RestController scan包功能 	<br/>
 4.完成@RequestParam 参数映射功能	<br/>
 5.使用Jackson序列化进行response的封装	<br/>
+6.封装httpResponse异常实体    <br/>
