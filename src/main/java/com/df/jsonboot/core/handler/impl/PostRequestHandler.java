@@ -71,7 +71,7 @@ public class PostRequestHandler implements RequestHandler {
         //设置传入的参数实体
         String jsonContent = fullHttpRequest.content().toString(Charsets.toCharset(CharEncoding.UTF_8));
 
-        //如果是json格式
+        //如果是json格式  改造结构 在handler下设置annotation包 用作处理
         if (StringUtils.equals(APPLICATION_JSON, contentType)){
             for(Parameter parameter : parameters){
                 Object result = null;
