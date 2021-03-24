@@ -38,5 +38,10 @@ public class UserController {
         return "success";
     }
 
+    @GetMapping(value = "/exo/{name}")
+    public String testPathVariable(@PathVariable("name") String name){
+        System.out.println(name);
+        return name;
+    }
 
 }

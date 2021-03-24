@@ -46,5 +46,35 @@ public class UrlUtil {
         return queryDecoder.path();
     }
 
+    /**
+     * 定义替换{xx}为匹配中文 英文字母 下划线的正则
+     * 如 /user/{age}  -> ^/user/[\u4e00-\u9fa5_a-zA-Z0-9]+/?$
+     *
+     * @param url 拼装路径
+     * @return 能够匹配{xxx}的正则
+     */
+    public static String formatUrl(String url) {
+        String originPattern = url.replaceAll("(\\{\\w+})", "[\\\\u4e00-\\\\u9fa5_a-zA-Z0-9]+");
+        String pattern = "^" + originPattern + "/?$";
+        return pattern.replaceAll("/+", "/");
+    }
+
+    /**
+     * 获取参数的映射MAP 如/user/{name} 传入 /user/xxx 返回的是 user:user, name:xxx
+     *
+     * @param requestPath 外部传入的路径
+     * @param url 注解上拼成的url路径
+     * @return 映射map
+     */
+    public static Map<String, String> getUrlParameterMappings(String requestPath, String url){
+        //外部进入的
+        String[] paramArray = requestPath.split("/");
+        String[] urlParamArray = url.split("/");
+        Map<String, String> urlParameterMappings = new HashMap<>();
+        for(int i = 0; i < urlParamArray.length; i++){
+            urlParameterMappings.put(urlParamArray[i].replace("{", "").replace("}", ""), paramArray[i]);
+        }
+        return urlParameterMappings;
+    }
 
 }

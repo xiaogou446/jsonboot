@@ -2,10 +2,8 @@ package com.df.jsonboot;
 
 import com.df.jsonboot.common.Banner;
 import com.df.jsonboot.common.JsonBootBanner;
-import com.df.jsonboot.core.route.Route;
+import com.df.jsonboot.core.context.ApplicationContext;
 import com.df.jsonboot.server.HttpServer;
-
-import java.io.PrintStream;
 
 /**
  * jsonboot 的启动类
@@ -18,8 +16,8 @@ public class JsonBootApplication {
         Banner banner = new JsonBootBanner();
         banner.printBanner(null, System.out);
         //初始化注解
-        Route route = new Route();
-        route.loadRoutes("com.df.demo");
+        ApplicationContext context = ApplicationContext.getInstance();
+        context.loadRoutes("com.df.demo");
         HttpServer httpServer = new HttpServer();
         httpServer.run();
     }
