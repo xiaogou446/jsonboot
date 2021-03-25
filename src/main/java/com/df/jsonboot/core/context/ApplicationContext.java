@@ -4,6 +4,10 @@ import com.df.jsonboot.annotation.Component;
 import com.df.jsonboot.annotation.GetMapping;
 import com.df.jsonboot.annotation.PostMapping;
 import com.df.jsonboot.annotation.RestController;
+import com.df.jsonboot.core.factory.ClassFactory;
+import com.df.jsonboot.core.factory.RouteFactory;
+import com.df.jsonboot.core.ioc.BeanFactory;
+import com.df.jsonboot.core.ioc.DependencyInjection;
 import com.df.jsonboot.core.scanners.AnnotatedClassScanner;
 import com.df.jsonboot.entity.MethodDetail;
 import com.df.jsonboot.utils.UrlUtil;
@@ -37,12 +41,12 @@ public class ApplicationContext {
 
     private ApplicationContext(){}
 
-    public void loadClass(String packageName){
-        AnnotatedClassScanner annotatedScanner = new AnnotatedClassScanner();
-        Set<Class<?>> restControllerClasses = annotatedScanner.scan(packageName, RestController.class);
-        Set<Class<?>> componentClasses = annotatedScanner.scan(packageName, Component.class);
-        CLASSES.put(RestController.class, restControllerClasses);
-        CLASSES.put(Component.class, componentClasses);
+    public void run(String packageName){
+        ClassFactory.loadClass(packageName);
+        RouteFactory.loadRoutes();
+        BeanFactory.loadBeans();
+        DependencyInjection.loadDependency(packageName);
+
     }
 
     /**

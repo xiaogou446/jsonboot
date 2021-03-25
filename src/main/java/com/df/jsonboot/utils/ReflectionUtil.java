@@ -1,8 +1,13 @@
 package com.df.jsonboot.utils;
 
+import com.df.jsonboot.annotation.Component;
+import com.df.jsonboot.annotation.RestController;
+import com.df.jsonboot.core.ioc.BeanFactory;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -23,14 +28,62 @@ public class ReflectionUtil {
     public static Object executeMethod(Method method, Object... args) {
         Object result = null;
         try {
-            // 生成方法对应类的对象
-            Object targetObject = method.getDeclaringClass().newInstance();
+            String beanName = null;
+            Object targetObject;
+            //先判断是否已经生成该对象了 直接在ioc的容器中取出来
+            Class<?> targetClass = method.getDeclaringClass();
+            if (targetClass.isAnnotationPresent(RestController.class)){
+                beanName = targetClass.getName();
+            }
+            if (targetClass.isAnnotationPresent(Component.class)){
+                Component component = targetClass.getAnnotation(Component.class);
+                beanName = StringUtils.isBlank(component.value()) ? targetClass.getName() : component.value();
+            }
+            if (StringUtils.isNotEmpty(beanName)){
+                targetObject = BeanFactory.BEANS.get(beanName);
+            }else{
+                targetObject = method.getDeclaringClass().newInstance();
+            }
             // 调用对象的方法
             result = method.invoke(targetObject, args);
         } catch (IllegalAccessException | InvocationTargetException | InstantiationException e) {
             e.printStackTrace();
         }
         return result;
+    }
+
+    /**
+     * 通过反射生成对象
+     *
+     * @param aClass 类的类型
+     * @return 类生成的对象
+     */
+    public static Object newInstance(Class<?> aClass){
+        Object instance = null;
+        try {
+            instance = aClass.newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            log.error("实例化对象失败 class: {}", aClass);
+            e.printStackTrace();
+        }
+        return instance;
+    }
+
+    /**
+     * 为对象的属性设值
+     *
+     * @param obj 需要设置属性的对象
+     * @param field 属性
+     * @param value 设置的值
+     */
+    public static void setReflectionField(Object obj, Field field, Object value){
+        try {
+            field.setAccessible(true);
+            field.set(obj, value);
+        } catch (IllegalAccessException e) {
+            log.error("设置对象field失败");
+            e.printStackTrace();
+        }
     }
 
     /**

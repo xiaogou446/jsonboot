@@ -41,11 +41,6 @@ public class RouteFactory {
      */
     public static Map<String, String> postUrlMapping = new HashMap<>();
 
-    //请求的时候初始化
-    static {
-        loadRoutes();
-    }
-
     /**
      * 根据注解进行访问路径的拼接
      *
