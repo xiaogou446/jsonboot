@@ -10,3 +10,4 @@
 6.封装httpResponse异常实体    <br/>
 7.实现@RequestBody的post请求(暂时只实现了json格式传输，表单格式后面补充。有RequestBody标注的实体与json内容对应，没有标注的与uri后缀对应) <br/>
 8.完成@PathVariable的功能，调节代码结构，使用简单工厂实现每个参数注解的映射 <br/>
+9.构建beanFactory IOC容器，实现基础的Autowired依赖注入功能  <br/>
