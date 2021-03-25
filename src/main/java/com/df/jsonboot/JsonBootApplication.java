@@ -17,7 +17,7 @@ public class JsonBootApplication {
         banner.printBanner(null, System.out);
         //初始化注解
         ApplicationContext context = ApplicationContext.getInstance();
-        context.loadRoutes("com.df.demo");
+        context.loadClass("com.df.demo");
         HttpServer httpServer = new HttpServer();
         httpServer.run();
     }

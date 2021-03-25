@@ -1,8 +1,9 @@
 package com.df.jsonboot.core.handler.impl;
 
+import com.df.jsonboot.core.factory.MethodDetailFactory;
 import com.df.jsonboot.core.handler.RequestHandler;
 import com.df.jsonboot.core.resolver.ParameterResolver;
-import com.df.jsonboot.core.resolver.factory.ParameterResolverFactory;
+import com.df.jsonboot.core.factory.ParameterResolverFactory;
 import com.df.jsonboot.core.context.ApplicationContext;
 import com.df.jsonboot.entity.MethodDetail;
 import com.df.jsonboot.utils.ReflectionUtil;
@@ -13,6 +14,7 @@ import org.apache.commons.codec.CharEncoding;
 import org.apache.commons.codec.Charsets;
 import org.apache.commons.lang3.StringUtils;
 
+import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,8 +50,7 @@ public class PostRequestHandler implements RequestHandler {
         //post请求也有可能在uri上使用参数
         Map<String, String> queryParamMap = UrlUtil.getQueryParam(uri);
         String path = UrlUtil.convertUriToPath(uri);
-        ApplicationContext applicationContext = ApplicationContext.getInstance();
-        MethodDetail methodDetail = applicationContext.getMethodDetail(path, HttpMethod.POST);
+        MethodDetail methodDetail = MethodDetailFactory.getMethodDetail(path, HttpMethod.POST);
         if (methodDetail == null || methodDetail.getMethod() == null){
             return null;
         }

@@ -1,8 +1,9 @@
 package com.df.jsonboot.core.handler.impl;
 
+import com.df.jsonboot.core.factory.MethodDetailFactory;
 import com.df.jsonboot.core.handler.RequestHandler;
 import com.df.jsonboot.core.resolver.ParameterResolver;
-import com.df.jsonboot.core.resolver.factory.ParameterResolverFactory;
+import com.df.jsonboot.core.factory.ParameterResolverFactory;
 import com.df.jsonboot.core.context.ApplicationContext;
 import com.df.jsonboot.entity.MethodDetail;
 import com.df.jsonboot.utils.ReflectionUtil;
@@ -30,8 +31,7 @@ public class GetRequestHandler implements RequestHandler {
         String uri = fullHttpRequest.uri();
         Map<String, String> queryParamMap = UrlUtil.getQueryParam(uri);
         String path = UrlUtil.convertUriToPath(uri);
-        ApplicationContext applicationContext = ApplicationContext.getInstance();
-        MethodDetail methodDetail = applicationContext.getMethodDetail(path, HttpMethod.GET);
+        MethodDetail methodDetail = MethodDetailFactory.getMethodDetail(path, HttpMethod.GET);
         if (methodDetail == null || methodDetail.getMethod() == null){
             return null;
         }

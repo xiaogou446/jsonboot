@@ -1,4 +1,4 @@
-package com.df.jsonboot.core.resolver.factory;
+package com.df.jsonboot.core.factory;
 
 import com.df.jsonboot.annotation.PathVariable;
 import com.df.jsonboot.annotation.RequestBody;
