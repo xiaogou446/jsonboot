@@ -12,6 +12,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Qualifier("TeacherServiceImpl")
     @Autowired
     Service service;
 

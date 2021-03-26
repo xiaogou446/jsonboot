@@ -5,11 +5,13 @@ import com.df.jsonboot.annotation.RestController;
 import com.df.jsonboot.core.ioc.BeanFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.reflections.Reflections;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Set;
 
 /**
  * 反射工具类
@@ -84,6 +86,18 @@ public class ReflectionUtil {
             log.error("设置对象field失败");
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 获取接口的对应实现类
+     *
+     * @param packageName 包名
+     * @param interfaceClass 接口
+     * @return 接口的实现类
+     */
+    public static Set<Class<?>> getSubClass(String packageName, Class<?> interfaceClass) {
+        Reflections reflections = new Reflections(packageName);
+        return reflections.getSubTypesOf((Class<Object>) interfaceClass);
     }
 
     /**
