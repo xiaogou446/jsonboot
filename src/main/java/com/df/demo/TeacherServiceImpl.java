@@ -1,6 +1,6 @@
 package com.df.demo;
 
-import com.df.jsonboot.annotation.Component;
+import com.df.jsonboot.annotation.ioc.Component;
 
 @Component("TeacherServiceImpl")
 public class TeacherServiceImpl implements Service{

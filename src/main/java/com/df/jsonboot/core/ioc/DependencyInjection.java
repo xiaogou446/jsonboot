@@ -1,12 +1,11 @@
 package com.df.jsonboot.core.ioc;
 
-import com.df.jsonboot.annotation.Autowired;
-import com.df.jsonboot.annotation.Qualifier;
+import com.df.jsonboot.annotation.ioc.Autowired;
+import com.df.jsonboot.annotation.ioc.Qualifier;
 import com.df.jsonboot.exception.InterfaceNotExistsImplementException;
 import com.df.jsonboot.exception.NotFountTargetBeanException;
 import com.df.jsonboot.utils.ReflectionUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.reflections.Reflections;
 
 import java.lang.reflect.Field;
 import java.util.Map;

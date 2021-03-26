@@ -1,7 +1,7 @@
 package com.df.jsonboot.core.ioc;
 
-import com.df.jsonboot.annotation.Component;
-import com.df.jsonboot.annotation.RestController;
+import com.df.jsonboot.annotation.ioc.Component;
+import com.df.jsonboot.annotation.springmvc.RestController;
 import com.df.jsonboot.core.context.ApplicationContext;
 import com.df.jsonboot.utils.ReflectionUtil;
 import org.apache.commons.lang3.StringUtils;

@@ -1,24 +1,14 @@
 package com.df.jsonboot.core.context;
 
-import com.df.jsonboot.annotation.Component;
-import com.df.jsonboot.annotation.GetMapping;
-import com.df.jsonboot.annotation.PostMapping;
-import com.df.jsonboot.annotation.RestController;
-import com.df.jsonboot.core.factory.ClassFactory;
-import com.df.jsonboot.core.factory.RouteFactory;
+import com.df.jsonboot.core.springmvc.factory.ClassFactory;
+import com.df.jsonboot.core.springmvc.factory.RouteFactory;
 import com.df.jsonboot.core.ioc.BeanFactory;
 import com.df.jsonboot.core.ioc.DependencyInjection;
-import com.df.jsonboot.core.scanners.AnnotatedClassScanner;
-import com.df.jsonboot.entity.MethodDetail;
-import com.df.jsonboot.utils.UrlUtil;
-import io.netty.handler.codec.http.HttpMethod;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Pattern;
 
 /**
  * 将请求通过注解进行组合路由

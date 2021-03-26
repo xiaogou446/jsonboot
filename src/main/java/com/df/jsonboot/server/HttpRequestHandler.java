@@ -1,10 +1,8 @@
 package com.df.jsonboot.server;
 
-import com.df.jsonboot.core.handler.RequestHandler;
-import com.df.jsonboot.core.handler.impl.GetRequestHandler;
-import com.df.jsonboot.core.handler.impl.PostRequestHandler;
-import com.df.jsonboot.serialize.impl.JacksonSerializer;
-import io.netty.buffer.Unpooled;
+import com.df.jsonboot.core.springmvc.handler.RequestHandler;
+import com.df.jsonboot.core.springmvc.handler.impl.GetRequestHandler;
+import com.df.jsonboot.core.springmvc.handler.impl.PostRequestHandler;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;

@@ -1,12 +1,14 @@
 package com.df.jsonboot.utils;
 
-import com.df.jsonboot.annotation.Component;
-import com.df.jsonboot.annotation.RestController;
+import com.df.jsonboot.annotation.ioc.Component;
+import com.df.jsonboot.annotation.springmvc.RestController;
 import com.df.jsonboot.core.ioc.BeanFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.reflections.Reflections;
+import org.reflections.scanners.TypeAnnotationsScanner;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -95,9 +97,26 @@ public class ReflectionUtil {
      * @param interfaceClass 接口
      * @return 接口的实现类
      */
+    @SuppressWarnings("unchecked")
     public static Set<Class<?>> getSubClass(String packageName, Class<?> interfaceClass) {
         Reflections reflections = new Reflections(packageName);
         return reflections.getSubTypesOf((Class<Object>) interfaceClass);
+    }
+
+    /**
+     * 实现路径内注解扫描功能
+     *
+     * @param packageName 需要扫描的包路径
+     * @param annotation 需要在包路径内寻找类的注解
+     * @return 包路径内包含该注解的类
+     */
+    public static Set<Class<?>> scanAnnotatedClass(String packageName, Class<? extends Annotation> annotation){
+        //初始化工具类 指定包名和注解对应的类型
+        Reflections reflections = new Reflections(packageName, new TypeAnnotationsScanner());
+        //获取某个包下对应功能的注解类
+        Set<Class<?>> annotationClass = reflections.getTypesAnnotatedWith(annotation, true);
+        log.info("annotationClass : {}, size: {}", annotationClass, annotationClass.size());
+        return annotationClass;
     }
 
     /**

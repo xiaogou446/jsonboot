@@ -1,7 +1,9 @@
 package com.df.demo;
 
 import com.df.demo.entity.User;
-import com.df.jsonboot.annotation.*;
+import com.df.jsonboot.annotation.ioc.Autowired;
+import com.df.jsonboot.annotation.ioc.Qualifier;
+import com.df.jsonboot.annotation.springmvc.*;
 
 import java.util.ArrayList;
 import java.util.List;
