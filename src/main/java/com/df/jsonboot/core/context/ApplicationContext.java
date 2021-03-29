@@ -28,14 +28,16 @@ public class ApplicationContext {
      */
     public static final Map<Class<? extends Annotation>, Set<Class<?>>> CLASSES = new HashMap<>();
 
+    public String packageName = "com.df";
+
 
     private ApplicationContext(){}
 
     public void run(String packageName){
-        ClassFactory.loadClass(packageName);
+        this.packageName = packageName;
+        ClassFactory.loadClass();
         RouteFactory.loadRoutes();
         BeanFactory.loadBeans();
-        DependencyInjection.loadDependency(packageName);
 
     }
 

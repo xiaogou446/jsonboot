@@ -17,12 +17,10 @@ public class ClassFactory {
 
     /**
      * 加载包路径下的类
-     *
-     * @param packageName 需要加载类的包路径
      */
-    public static void loadClass(String packageName){
-        Set<Class<?>> restControllerClasses = ReflectionUtil.scanAnnotatedClass(packageName, RestController.class);
-        Set<Class<?>> componentClasses = ReflectionUtil.scanAnnotatedClass(packageName, Component.class);
+    public static void loadClass(){
+        Set<Class<?>> restControllerClasses = ReflectionUtil.scanAnnotatedClass(ApplicationContext.getInstance().packageName, RestController.class);
+        Set<Class<?>> componentClasses = ReflectionUtil.scanAnnotatedClass(ApplicationContext.getInstance().packageName, Component.class);
         ApplicationContext.CLASSES.put(RestController.class, restControllerClasses);
         ApplicationContext.CLASSES.put(Component.class, componentClasses);
     }

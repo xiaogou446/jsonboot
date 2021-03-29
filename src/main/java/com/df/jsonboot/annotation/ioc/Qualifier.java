@@ -14,6 +14,6 @@ import java.lang.annotation.*;
 @Inherited
 public @interface Qualifier {
 
-    String value() default "";
+    String value();
 
 }

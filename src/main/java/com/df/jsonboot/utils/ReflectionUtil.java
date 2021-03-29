@@ -25,6 +25,23 @@ import java.util.Set;
 public class ReflectionUtil {
 
     /**
+     * 获取目标类上标注Component注解的值
+     *
+     * @param aClass 要获取注解值的类
+     * @param annotation 标注的注解
+     * @param defaultValue 默认值
+     * @return 注解标注的值
+     */
+    public static String getComponentValue(Class<?> aClass, Class<? extends Component> annotation
+                                                , String defaultValue){
+        if (!aClass.isAnnotationPresent(annotation)){
+            return defaultValue;
+        }
+        Component declaredAnnotation = aClass.getDeclaredAnnotation(annotation);
+        return StringUtils.isBlank(declaredAnnotation.value()) ? defaultValue : declaredAnnotation.value();
+    }
+
+    /**
      * @param method 目标方法
      * @param args   调用的参数
      * @return 执行结果
