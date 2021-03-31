@@ -20,9 +20,9 @@ public class ClassFactory {
      * 加载包路径下的类
      */
     public static void loadClass(){
-        Set<Class<?>> restControllerClasses = ReflectionUtil.scanAnnotatedClass(ApplicationContext.getInstance().packageName, RestController.class);
-        Set<Class<?>> componentClasses = ReflectionUtil.scanAnnotatedClass(ApplicationContext.getInstance().packageName, Component.class);
-        Set<Class<?>> aspectClasses = ReflectionUtil.scanAnnotatedClass(ApplicationContext.getInstance().packageName, Aspect.class);
+        Set<Class<?>> restControllerClasses = ReflectionUtil.scanAnnotatedClass(ApplicationContext.getInstance().getPackageNames(), RestController.class);
+        Set<Class<?>> componentClasses = ReflectionUtil.scanAnnotatedClass(ApplicationContext.getInstance().getPackageNames(), Component.class);
+        Set<Class<?>> aspectClasses = ReflectionUtil.scanAnnotatedClass(ApplicationContext.getInstance().getPackageNames(), Aspect.class);
         ApplicationContext.CLASSES.put(RestController.class, restControllerClasses);
         ApplicationContext.CLASSES.put(Component.class, componentClasses);
         ApplicationContext.CLASSES.put(Aspect.class, aspectClasses);

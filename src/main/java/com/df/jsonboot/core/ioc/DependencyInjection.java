@@ -38,7 +38,8 @@ public class DependencyInjection {
                 beanName  = ReflectionUtil.getComponentValue(fieldTypeClass, Component.class, beanName);
                 //判断是否是接口 如果是接口那存着的就是接口信息，需要顺延找到实现类
                 if (fieldTypeClass.isInterface()){
-                    Set<Class<?>> subClass = ReflectionUtil.getSubClass(ApplicationContext.getInstance().packageName, fieldTypeClass);
+                    @SuppressWarnings("unchecked")
+                    Set<Class<?>> subClass = ReflectionUtil.getSubClass(ApplicationContext.getInstance().getPackageNames(), (Class<Object>)fieldTypeClass);
                     if (subClass.size() == 0){
                         throw new InterfaceNotExistsImplementException("接口的实现类不存在");
                     }else if (subClass.size() == 1){

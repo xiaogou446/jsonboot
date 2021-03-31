@@ -14,3 +14,4 @@
 10.完成@Qulifier的功能 </br>
 11.重构IOC模块实现方式，解决循环依赖 </br>
 12.完成基于jdk和cglib的aop实现  </br>
+13.重构启动方式，完成@ComponentScan </br>

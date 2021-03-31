@@ -111,14 +111,14 @@ public class ReflectionUtil {
     /**
      * 获取接口的对应实现类
      *
-     * @param packageName 包名
+     * @param packageNames 包名
      * @param interfaceClass 接口
      * @return 接口的实现类
      */
     @SuppressWarnings("unchecked")
-    public static Set<Class<?>> getSubClass(String packageName, Class<?> interfaceClass) {
-        Reflections reflections = new Reflections(packageName);
-        return reflections.getSubTypesOf((Class<Object>) interfaceClass);
+    public static <T> Set<Class<? extends T>> getSubClass(Object[] packageNames, Class<T> interfaceClass) {
+        Reflections reflections = new Reflections(packageNames);
+        return reflections.getSubTypesOf(interfaceClass);
     }
 
     /**
@@ -128,7 +128,7 @@ public class ReflectionUtil {
      * @param annotation 需要在包路径内寻找类的注解
      * @return 包路径内包含该注解的类
      */
-    public static Set<Class<?>> scanAnnotatedClass(String packageName, Class<? extends Annotation> annotation){
+    public static Set<Class<?>> scanAnnotatedClass(String[] packageName, Class<? extends Annotation> annotation){
         //初始化工具类 指定包名和注解对应的类型
         Reflections reflections = new Reflections(packageName, new TypeAnnotationsScanner());
         //获取某个包下对应功能的注解类
@@ -146,9 +146,6 @@ public class ReflectionUtil {
      */
     public static void executeMethodNoResult(Object targetObject, Method method, Object... args){
         try {
-            System.out.println(targetObject);
-            System.out.println(method);
-            System.out.println(Arrays.toString(args));
             method.invoke(targetObject, args);
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
