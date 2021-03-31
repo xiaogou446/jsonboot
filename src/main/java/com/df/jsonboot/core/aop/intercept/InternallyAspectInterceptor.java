@@ -80,6 +80,7 @@ public class InternallyAspectInterceptor extends Interceptor{
     public Object intercept(MethodInvocation methodInvocation) {
         JoinPoint joinPoint = new JoinPointImpl(aspectBean, methodInvocation.getTargetObject(), methodInvocation.getArgs());
         beforeMethod.forEach(method -> {
+            //与调用的方法参数要一致
             ReflectionUtil.executeMethodNoResult(aspectBean, method, joinPoint);
         });
         Object result = methodInvocation.proceed();
