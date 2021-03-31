@@ -25,7 +25,9 @@ public class UserController {
 
     @GetMapping(value = "/helloImpl")
     public void helloImpl(){
-        System.out.println(service.handler());
+        System.out.println("方法进来了");
+        String handler = service.handler();
+        System.out.println(handler);
     }
 
     @PostMapping("/hi")

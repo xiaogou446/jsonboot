@@ -13,6 +13,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.Set;
 
 /**
@@ -134,6 +135,42 @@ public class ReflectionUtil {
         Set<Class<?>> annotationClass = reflections.getTypesAnnotatedWith(annotation, true);
         log.info("annotationClass : {}, size: {}", annotationClass, annotationClass.size());
         return annotationClass;
+    }
+
+    /**
+     * 反射调用无返回值的方法
+     *
+     * @param targetObject 执行的目标对象
+     * @param method 执行的方法
+     * @param args 执行的参数
+     */
+    public static void executeMethodNoResult(Object targetObject, Method method, Object... args){
+        try {
+            System.out.println(targetObject);
+            System.out.println(method);
+            System.out.println(Arrays.toString(args));
+            method.invoke(targetObject, args);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 执行目标方法
+     *
+     * @param targetObject 目标对象
+     * @param method 目标方法
+     * @param args 参数
+     * @return 执行结果
+     */
+    public static Object executeTargetMethod(Object targetObject, Method method, Object... args){
+        Object result = null;
+        try {
+            result = method.invoke(targetObject, args);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     /**
