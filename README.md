@@ -44,11 +44,17 @@ JsonBoot是一款以Maven为基础，以Netty作为Http服务器的仿Springboot
 ## 使用
 在demo文件包中通过 **@componentScan** 注解扫描路径，启动即可。
 **默认定义的端口就是8080**
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210401141724126.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzYyNTk0,size_16,color_FFFFFF,t_70)
+
 调用这是 **@RestController**标注的Controller类，进行设置路由访问即可，和SpringBoot的访问方式一致。
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2021040114231752.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzYyNTk0,size_16,color_FFFFFF,t_70)
+
 测试 **@PathVariable** 注解的作用
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210401143203838.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzYyNTk0,size_16,color_FFFFFF,t_70)
+
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210401143238687.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNzYyNTk0,size_16,color_FFFFFF,t_70)
 
 ## 待续
